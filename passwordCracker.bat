@@ -7,12 +7,13 @@ setlocal
 set DIR=%~dp0
 set OUT=%DIR%out
 
-if not exist "%OUT%" (
-    mkdir "%OUT%"
-    dir /s /b "%DIR%src\*.java" > "%TEMP%\pc_sources.txt"
-    javac -d "%OUT%" @"%TEMP%\pc_sources.txt"
-    copy "%DIR%dictionary.txt" "%OUT%\" >nul 2>&1
-)
+REM Recompilation systematique (le projet est petit, cela prend moins d'une seconde)
+REM afin d'eviter d'executer d'anciennes classes obsoletes.
+if exist "%OUT%" rmdir /s /q "%OUT%"
+mkdir "%OUT%"
+dir /s /b "%DIR%src\*.java" > "%TEMP%\pc_sources.txt"
+javac -d "%OUT%" @"%TEMP%\pc_sources.txt"
+copy "%DIR%dictionary.txt" "%OUT%\" >nul 2>&1
 
 cd /d "%DIR%"
 java -cp "%OUT%" com.passwordcracker.PasswordCracker %*

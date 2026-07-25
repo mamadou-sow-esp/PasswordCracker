@@ -33,7 +33,7 @@ public class HashCrackerFactory {
      */
     public static HashCracker create(String method) {
         if (method == null) {
-            throw new IllegalArgumentException("La méthode ne peut pas être nulle.");
+            throw new IllegalArgumentException("La methode ne peut pas etre nulle.");
         }
         switch (method.trim().toUpperCase()) {
             case "DICO":
@@ -42,7 +42,7 @@ public class HashCrackerFactory {
                 return new BruteForceHashCracker();
             default:
                 throw new IllegalArgumentException(
-                        "Méthode inconnue : « " + method + " » (attendu : BRUTE ou DICO)");
+                        "Methode inconnue : \"" + method + "\" (attendu : BRUTE ou DICO)");
         }
     }
 }

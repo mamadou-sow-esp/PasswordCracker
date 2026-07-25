@@ -33,7 +33,7 @@ public class PasswordCracker {
         }
 
         if (!isValidMd5(hash)) {
-            System.out.println("Hash MD5 invalide : un hash MD5 comporte 32 caractères hexadécimaux.");
+            System.out.println("Hash MD5 invalide : un hash MD5 doit comporter 32 caracteres hexadecimaux.");
             return;
         }
 
@@ -46,7 +46,7 @@ public class PasswordCracker {
             return;
         }
 
-        System.out.println("Méthode : " + method.toUpperCase() + "  |  Hash cible : " + hash);
+        System.out.println("Methode : " + method.toUpperCase() + "  |  Hash cible : " + hash);
         System.out.println("Recherche en cours...");
 
         long start = System.nanoTime();
@@ -63,7 +63,7 @@ public class PasswordCracker {
         if (cracker instanceof AbstractHashCracker base) {
             System.out.printf("Nombre de tentatives : %,d%n", base.getAttempts());
         }
-        System.out.printf("Temps d'exécution   : %.3f s%n", seconds);
+        System.out.printf("Temps d'execution   : %.3f s%n", seconds);
     }
 
     /**
