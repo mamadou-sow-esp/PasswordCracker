@@ -1,0 +1,48 @@
+@startuml PasswordCracker
+' Diagramme de classes — PasswordCracker v1 (patron Simple Factory)
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+interface HashCracker {
+  + crack(hash: String): String
+}
+
+abstract class AbstractHashCracker {
+  - attempts: long
+  # matches(candidate: String, targetHash: String): boolean
+  # resetAttempts(): void
+  + getAttempts(): long
+}
+
+class DictionaryHashCracker {
+  - dictionaryName: String
+  + crack(hash: String): String
+}
+
+class BruteForceHashCracker {
+  - maxLength: int
+  + crack(hash: String): String
+}
+
+class HashCrackerFactory <<Simple Factory>> {
+  + {static} create(method: String): HashCracker
+}
+
+class Md5Utils <<utility>> {
+  + {static} md5(input: String): String
+}
+
+class PasswordCracker <<client>> {
+  + {static} main(args: String[]): void
+}
+
+HashCracker <|.. AbstractHashCracker
+AbstractHashCracker <|-- DictionaryHashCracker
+AbstractHashCracker <|-- BruteForceHashCracker
+AbstractHashCracker ..> Md5Utils : «utilise»
+HashCrackerFactory ..> HashCracker : «crée»
+HashCrackerFactory ..> DictionaryHashCracker : «instancie»
+HashCrackerFactory ..> BruteForceHashCracker : «instancie»
+PasswordCracker ..> HashCrackerFactory : «utilise»
+PasswordCracker ..> HashCracker : «utilise»
+@enduml

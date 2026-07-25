@@ -1,0 +1,15 @@
+# Répertoire de compilation
+/out/
+*.class
+
+# Fichiers d'IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Divers OS
+.DS_Store
+Thumbs.db
