@@ -1,7 +1,17 @@
 @startuml PasswordCracker
 ' Diagramme de classes — PasswordCracker v1 (patron Simple Factory)
-skinparam classAttributeIconSize 0
 skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FFFFFF
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #334155
+  ArrowColor #64748B
+  FontName Segoe UI
+}
+skinparam stereotypeCBackgroundColor #E2E8F0
+skinparam titleFontSize 18
+title PasswordCracker v1 — Diagramme de classes (Simple Factory)
 
 interface HashCracker {
   + crack(hash: String): String
@@ -24,25 +34,25 @@ class BruteForceHashCracker {
   + crack(hash: String): String
 }
 
-class HashCrackerFactory <<Simple Factory>> {
+class HashCrackerFactory << (F,#F59E0B) Simple Factory >> {
   + {static} create(method: String): HashCracker
 }
 
-class Md5Utils <<utility>> {
+class Md5Utils << (U,#14B8A6) utilitaire >> {
   + {static} md5(input: String): String
 }
 
-class PasswordCracker <<client>> {
+class PasswordCracker << (C,#3B82F6) client >> {
   + {static} main(args: String[]): void
 }
 
 HashCracker <|.. AbstractHashCracker
 AbstractHashCracker <|-- DictionaryHashCracker
 AbstractHashCracker <|-- BruteForceHashCracker
-AbstractHashCracker ..> Md5Utils : «utilise»
-HashCrackerFactory ..> HashCracker : «crée»
-HashCrackerFactory ..> DictionaryHashCracker : «instancie»
-HashCrackerFactory ..> BruteForceHashCracker : «instancie»
-PasswordCracker ..> HashCrackerFactory : «utilise»
-PasswordCracker ..> HashCracker : «utilise»
+AbstractHashCracker ..> Md5Utils : "utilise"
+HashCrackerFactory ..> HashCracker : "retourne"
+HashCrackerFactory ..> DictionaryHashCracker : "instancie"
+HashCrackerFactory ..> BruteForceHashCracker : "instancie"
+PasswordCracker ..> HashCrackerFactory : "utilise"
+PasswordCracker ..> HashCracker : "utilise"
 @enduml

@@ -3,6 +3,9 @@
 Outil en ligne de commande permettant de retrouver un mot de passe à partir de son empreinte **MD5**, par attaque **dictionnaire** ou **force brute**.
 Mini-Projet 1 — Patrons de conception.
 
+- **Dépôt GitHub :** https://github.com/mamadou-sow-esp/PasswordCracker
+- **Vidéo de présentation :** https://youtu.be/JSp1FYODCbM
+
 ---
 
 ## Sommaire
@@ -78,9 +81,9 @@ PasswordCracker/
 ├── passwordCracker           # script de lancement (Linux/macOS)
 ├── passwordCracker.bat       # script de lancement (Windows)
 ├── docs/
-│   ├── uml.svg               # diagramme de classes (source)
-│   ├── uml.png               # diagramme de classes (aperçu)
-│   ├── uml.puml              # source PlantUML (éditable)
+│   ├── uml.svg               # diagramme de classes (rendu)
+│   ├── uml.png               # diagramme de classes (aperçu PNG)
+│   └── uml.puml              # source PlantUML (éditable)
 └── src/com/passwordcracker/
     ├── HashCracker.java          (interface)
     ├── AbstractHashCracker.java  (classe abstraite)
@@ -103,7 +106,7 @@ Relations principales :
 
 - `AbstractHashCracker` **réalise** `HashCracker` (`implements`).
 - `DictionaryHashCracker` et `BruteForceHashCracker` **héritent** de `AbstractHashCracker` (`extends`).
-- `HashCrackerFactory` **crée** des `HashCracker` (dépendance vers l'abstraction, connaissance des classes concrètes).
+- `HashCrackerFactory` **retourne** le type abstrait `HashCracker`, mais **instancie** les classes concrètes `DictionaryHashCracker` et `BruteForceHashCracker` (d'où les deux flèches de dépendance vers ces classes sur le diagramme). C'est cette connaissance des types concrets qui explique la limite Open/Closed du patron.
 - `AbstractHashCracker` **utilise** `Md5Utils`.
 - `PasswordCracker` **utilise** la fabrique et l'interface, jamais les classes concrètes.
 
