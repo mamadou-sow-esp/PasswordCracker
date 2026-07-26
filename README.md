@@ -148,73 +148,89 @@ Ce que le patron apporte concrètement ici :
 
 ## 6. Résultats obtenus
 
-Tests réalisés (JDK 21, alphabet `a…z`, longueur brute maximale de 4). Les hash utilisés sont les empreintes MD5 réelles des mots testés.
+Tests réalisés sous Windows (JDK 21, alphabet `a…z`, longueur brute maximale de 4). Les hash utilisés sont les empreintes MD5 réelles des mots testés. Les temps dépendent de la machine.
 
 ### Attaque par dictionnaire (`DICO`)
 
 ```text
-$ ./passwordCracker -m DICO -h 098f6bcd4621d373cade4e832627b4f6
-Méthode : DICO  |  Hash cible : 098f6bcd4621d373cade4e832627b4f6
+> passwordCracker.bat -m DICO -h 098f6bcd4621d373cade4e832627b4f6
+Methode : DICO  |  Hash cible : 098f6bcd4621d373cade4e832627b4f6
 Recherche en cours...
 --------------------------------------------------
 Password found: test
 Nombre de tentatives : 6
-Temps d'exécution   : 0.050 s
+Temps d'execution   : 0,026 s
 ```
 
 ```text
-$ ./passwordCracker -m DICO -h 21232f297a57a5a743894a0e4a801fc3
+> passwordCracker.bat -m DICO -h 21232f297a57a5a743894a0e4a801fc3
 --------------------------------------------------
 Password found: admin
 Nombre de tentatives : 3
-Temps d'exécution   : 0.044 s
+Temps d'execution   : 0,029 s
 ```
 
 ```text
-$ ./passwordCracker -m DICO -h ffffffffffffffffffffffffffffffff
+> passwordCracker.bat -m DICO -h 5ebe2294ecd0e0f08eab7690d2a6ee69
+--------------------------------------------------
+Password found: secret
+Nombre de tentatives : 2
+Temps d'execution   : 0,027 s
+```
+
+```text
+> passwordCracker.bat -m DICO -h ffffffffffffffffffffffffffffffff
 --------------------------------------------------
 Password not found
 Nombre de tentatives : 20
-Temps d'exécution   : 0.048 s
+Temps d'execution   : 0,034 s
 ```
 
 ### Attaque par force brute (`BRUTE`)
 
 ```text
-$ ./passwordCracker -m BRUTE -h 900150983cd24fb0d6963f7d28e17f72   # md5("abc")
+> passwordCracker.bat -m BRUTE -h fbade9e36a3f36d3d676c1b808451dd7   # md5("z")
 --------------------------------------------------
-Password found: abc
-Nombre de tentatives : 731
-Temps d'exécution   : 0.087 s
+Password found: z
+Nombre de tentatives : 26
+Temps d'execution   : 0,022 s
 ```
 
 ```text
-$ ./passwordCracker -m BRUTE -h 098f6bcd4621d373cade4e832627b4f6   # md5("test")
+> passwordCracker.bat -m BRUTE -h 900150983cd24fb0d6963f7d28e17f72   # md5("abc")
+--------------------------------------------------
+Password found: abc
+Nombre de tentatives : 731
+Temps d'execution   : 0,036 s
+```
+
+```text
+> passwordCracker.bat -m BRUTE -h 098f6bcd4621d373cade4e832627b4f6   # md5("test")
 --------------------------------------------------
 Password found: test
 Nombre de tentatives : 355 414
-Temps d'exécution   : 1.248 s
+Temps d'execution   : 0,284 s
 ```
 
 ### Cas d'erreur gérés
 
 ```text
-$ ./passwordCracker -m FOO -h 098f6bcd4621d373cade4e832627b4f6
-Méthode inconnue : « FOO » (attendu : BRUTE ou DICO)
+> passwordCracker.bat -m FOO -h 098f6bcd4621d373cade4e832627b4f6
+Methode inconnue : "FOO" (attendu : BRUTE ou DICO)
 
-$ ./passwordCracker -m DICO -h xyz
-Hash MD5 invalide : un hash MD5 comporte 32 caractères hexadécimaux.
+> passwordCracker.bat -m DICO -h xyz
+Hash MD5 invalide : un hash MD5 doit comporter 32 caracteres hexadecimaux.
 ```
 
 ### Synthèse
 
-En dictionnaire, le mot `test` est trouvé en 6 tentatives (0,050 s) et `admin` en 3 tentatives (0,044 s) ; un hash absent du dictionnaire épuise les 20 mots en 0,048 s et renvoie `Password not found`. En force brute, `abc` (3 lettres) demande 731 tentatives (0,087 s), tandis que `test` (4 lettres) demande 355 414 tentatives (1,248 s).
+En dictionnaire, les mots présents sont trouvés quasi instantanément : `test` en 6 tentatives (0,026 s), `admin` en 3 tentatives (0,029 s), `secret` en 2 tentatives (0,027 s) ; un hash absent du dictionnaire épuise les 20 mots en 0,034 s et renvoie `Password not found`. En force brute, `z` (1 lettre) demande 26 tentatives (0,022 s), `abc` (3 lettres) 731 tentatives (0,036 s), et `test` (4 lettres) 355 414 tentatives (0,284 s).
 
-On observe nettement la différence de coût : le dictionnaire est immédiat quand le mot y figure, tandis que la force brute croît de façon exponentielle avec la longueur (l'espace `a…z` de longueur 4 compte 475 254 combinaisons).
+On observe nettement la différence de coût : le dictionnaire est immédiat quand le mot y figure, tandis que la force brute croît de façon exponentielle avec la longueur. L'espace de recherche `a…z` de longueur 1 à 4 compte 475 254 combinaisons (26 + 26² + 26³ + 26⁴), ce qui explique le bond du nombre de tentatives dès quatre caractères.
 
 ### Vidéo de présentation
 
-La vidéo de démonstration de l'exécution de l'outil (dix minutes maximum) est disponible ici : **`<INSÉRER LE LIEN — YouTube / Drive>`**
+La vidéo de démonstration de l'exécution de l'outil (dix minutes maximum) est disponible ici : **https://youtu.be/jhIF2j_VkqM**
 
 Un script de démonstration prêt à filmer est fourni dans [`docs/DEMO.md`](docs/DEMO.md).
 
