@@ -29,8 +29,6 @@ Dans le domaine de la cybersécurité, les mots de passe ne sont jamais stockés
 
 Ce projet développe une première version d'un outil, **`passwordCracker`**, qui retrouve un mot de passe à partir de son hash MD5. L'objectif pédagogique principal n'est pas l'efficacité du cassage, mais la **conception orientée objet** : structurer proprement plusieurs stratégies interchangeables et centraliser leur création à l'aide du patron de création **Simple Factory**.
 
-**Cadre éthique.** Cet outil est un exercice pédagogique. Le cassage de mots de passe ne doit être réalisé que sur des systèmes dont on est propriétaire ou pour lesquels on dispose d'une autorisation écrite (audit, test d'intrusion). MD5 est par ailleurs considéré comme cryptographiquement cassé et ne doit plus être utilisé pour protéger de vrais mots de passe.
-
 ---
 
 ## 2. Présentation du problème
