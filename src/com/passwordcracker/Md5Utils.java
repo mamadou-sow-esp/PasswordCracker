@@ -7,13 +7,6 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Classe utilitaire chargée du calcul d'empreintes MD5.
  *
- * <p>Elle est volontairement centralisée ici afin d'éviter toute duplication
- * de code : les deux stratégies (dictionnaire et force brute) ont besoin de
- * calculer des hash MD5, mais la logique n'existe qu'à un seul endroit
- * (contrainte « éviter les duplications de code »).</p>
- *
- * <p>La classe est {@code final} et son constructeur privé : elle ne doit pas
- * être instanciée, seules ses méthodes statiques sont utilisées.</p>
  */
 public final class Md5Utils {
 

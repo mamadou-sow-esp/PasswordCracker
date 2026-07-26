@@ -2,20 +2,6 @@ package com.passwordcracker;
 
 /**
  * Fabrique simple (patron <em>Simple Factory</em>).
- *
- * <p>Elle centralise la création des stratégies de cassage. Le programme
- * principal ne connaît que la chaîne de méthode (« BRUTE » ou « DICO ») et
- * délègue à cette fabrique le choix et l'instanciation de la classe concrète
- * appropriée.</p>
- *
- * <p>Ainsi :</p>
- * <ul>
- *   <li>les classes concrètes ne sont jamais instanciées directement dans le
- *       programme principal (contrainte du sujet) ;</li>
- *   <li>toute la logique de sélection est regroupée à un seul endroit ;</li>
- *   <li>le client dépend de l'abstraction {@link HashCracker}, pas des
- *       implémentations.</li>
- * </ul>
  */
 public class HashCrackerFactory {
 

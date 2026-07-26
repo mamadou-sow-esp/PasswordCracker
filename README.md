@@ -81,7 +81,6 @@ PasswordCracker/
 │   ├── uml.svg               # diagramme de classes (source)
 │   ├── uml.png               # diagramme de classes (aperçu)
 │   ├── uml.puml              # source PlantUML (éditable)
-│   └── DEMO.md               # script de démonstration pour la vidéo
 └── src/com/passwordcracker/
     ├── HashCracker.java          (interface)
     ├── AbstractHashCracker.java  (classe abstraite)
@@ -230,9 +229,7 @@ On observe nettement la différence de coût : le dictionnaire est immédiat qua
 
 ### Vidéo de présentation
 
-La vidéo de démonstration de l'exécution de l'outil (dix minutes maximum) est disponible ici : **https://youtu.be/jhIF2j_VkqM**
-
-Un script de démonstration prêt à filmer est fourni dans [`docs/DEMO.md`](docs/DEMO.md).
+La vidéo de démonstration de l'exécution de l'outil est disponible ici : **https://youtu.be/JSp1FYODCbM**
 
 ---
 
@@ -318,10 +315,6 @@ Le code client (`main`) n'a pas besoin d'être modifié : c'est justement l'int�
 
 ### 4. La fabrique respecte-t-elle le principe Open/Closed ?
 
-Non. Le principe Open/Closed stipule qu'une classe doit être ouverte à l'extension mais fermée à la modification. Or, chaque nouvelle stratégie oblige à modifier le code source de `HashCrackerFactory` (ajout d'un `case`). La fabrique n'est donc pas fermée à la modification. C'est la limite fondamentale de la Simple Factory, qui sera corrigée dans le mini-projet suivant.
+Non. Le principe Open/Closed stipule qu'une classe doit être ouverte à l'extension mais fermée à la modification. Or, chaque nouvelle stratégie oblige à modifier le code source de `HashCrackerFactory` (ajout d'un `case`). La fabrique n'est donc pas fermée à la modification.
 
 ---
-
-### Préparation du mini-projet suivant
-
-Comme constaté, l'ajout d'une stratégie nécessite de modifier `HashCrackerFactory`. Cette limitation (violation du principe Open/Closed) sera étudiée et corrigée dans le mini-projet suivant, par un mécanisme rendant l'ajout de stratégies possible sans modifier le code existant.

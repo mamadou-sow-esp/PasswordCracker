@@ -4,18 +4,6 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Application console {@code passwordCracker}.
- *
- * <p>Point d'entrée de l'outil. Analyse les arguments de la ligne de commande,
- * demande à la fabrique la stratégie adaptée, lance le cassage et affiche le
- * résultat ainsi que quelques informations utiles (temps d'exécution, nombre
- * de tentatives).</p>
- *
- * <p>Usage :</p>
- * <pre>
- *   passwordCracker -m BRUTE -h &lt;hashMD5&gt;
- *   passwordCracker -m DICO  -h &lt;hashMD5&gt;
- * </pre>
  */
 public class PasswordCracker {
 

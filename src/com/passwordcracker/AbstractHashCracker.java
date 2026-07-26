@@ -3,18 +3,6 @@ package com.passwordcracker;
 /**
  * Classe abstraite de base pour les stratégies de cassage.
  *
- * <p>Elle implémente {@link HashCracker} et factorise le comportement commun à
- * toutes les stratégies afin d'éviter la duplication de code (contrainte du
- * sujet) :</p>
- * <ul>
- *   <li>le comptage du nombre de tentatives effectuées ;</li>
- *   <li>la comparaison d'un candidat avec le hash recherché, via
- *       {@link Md5Utils}.</li>
- * </ul>
- *
- * <p>Les stratégies concrètes n'ont plus qu'à décrire <em>comment</em> elles
- * génèrent leurs candidats, et à appeler {@link #matches(String, String)} pour
- * les tester. Le contrat public reste celui de l'interface {@code HashCracker}.</p>
  */
 public abstract class AbstractHashCracker implements HashCracker {
 

@@ -3,19 +3,6 @@ package com.passwordcracker;
 /**
  * Stratégie de cassage par <strong>force brute</strong>.
  *
- * <p>Le principe : on génère systématiquement toutes les combinaisons possibles
- * de l'alphabet, de longueur croissante (1, 2, 3, ... jusqu'à la longueur
- * maximale), on calcule leur hash MD5 et on le compare au hash recherché.</p>
- *
- * <p>Conformément au sujet :</p>
- * <ul>
- *   <li>alphabet : {@code abcdefghijklmnopqrstuvwxyz} ;</li>
- *   <li>longueur maximale : 4 caractères.</li>
- * </ul>
- *
- * <p>Les combinaisons sont produites dans l'ordre : {@code a, b, ..., z, aa,
- * ab, ..., zzzz}. La génération est récursive et s'arrête dès qu'une
- * correspondance est trouvée.</p>
  */
 public class BruteForceHashCracker extends AbstractHashCracker {
 

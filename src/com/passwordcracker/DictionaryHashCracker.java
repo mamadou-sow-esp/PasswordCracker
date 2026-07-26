@@ -11,14 +11,6 @@ import java.nio.file.Path;
 /**
  * Stratégie de cassage par <strong>dictionnaire</strong>.
  *
- * <p>Le principe : on parcourt une liste de mots connus, on calcule le hash MD5
- * de chaque mot et on le compare au hash recherché. Dès qu'une correspondance
- * est trouvée, le mot en clair est retourné.</p>
- *
- * <p>Le dictionnaire est recherché d'abord sur le disque (fichier
- * {@code dictionary.txt} par défaut), puis, à défaut, dans les ressources
- * embarquées du programme (classpath). Cela rend l'outil utilisable directement
- * après compilation, sans configuration.</p>
  */
 public class DictionaryHashCracker extends AbstractHashCracker {
 
